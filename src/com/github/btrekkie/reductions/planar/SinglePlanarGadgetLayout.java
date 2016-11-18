@@ -1085,23 +1085,46 @@ class SinglePlanarGadgetLayout {
         if (bottomX2 == Integer.MIN_VALUE) {
             bottomX2 = rightX1;
         }
-        IPlanarGadget barrier = barrierFactory.createBarrier(barrierFactory.minWidth(), leftBarrierMaxY - vertex.y);
-        layout.put(barrier, new Point(leftX2 - barrierFactory.minWidth(), vertex.y));
-        barrier = barrierFactory.createBarrier(barrierFactory.minWidth(), boundsBottomY - rightBarrierMinY);
-        layout.put(barrier, new Point(rightX1, rightBarrierMinY));
-        barrier = barrierFactory.createBarrier(topX2 - topX1, topY2 - vertex.y);
-        layout.put(barrier, new Point(topX1, vertex.y));
-        barrier = barrierFactory.createBarrier(bottomX2 - bottomX1, boundsBottomY - bottomY1);
-        layout.put(barrier, new Point(bottomX1, bottomY1));
+
+        // Add barriers to left side
+        if (topX2 - topX1 >= barrierFactory.minWidth()) {
+            IPlanarGadget barrier = barrierFactory.createBarrier(barrierFactory.minWidth(), leftBarrierMaxY - vertex.y);
+            layout.put(barrier, new Point(leftX2 - barrierFactory.minWidth(), vertex.y));
+            barrier = barrierFactory.createBarrier(topX2 - topX1, topY2 - vertex.y);
+            layout.put(barrier, new Point(topX1, vertex.y));
+        } else {
+            // We must have set topX1 to be leftX2
+            IPlanarGadget barrier = barrierFactory.createBarrier(barrierFactory.minWidth(), leftBarrierMaxY - topY2);
+            layout.put(barrier, new Point(leftX2 - barrierFactory.minWidth(), topY2));
+            barrier = barrierFactory.createBarrier(topX2 - vertex.minX, topY2 - vertex.y);
+            layout.put(barrier, new Point(vertex.minX, vertex.y));
+        }
+
+        // Add barriers to right side
+        if (bottomX2 - bottomX1 >= barrierFactory.minWidth()) {
+            IPlanarGadget barrier = barrierFactory.createBarrier(
+                barrierFactory.minWidth(), boundsBottomY - rightBarrierMinY);
+            layout.put(barrier, new Point(rightX1, rightBarrierMinY));
+            barrier = barrierFactory.createBarrier(bottomX2 - bottomX1, boundsBottomY - bottomY1);
+            layout.put(barrier, new Point(bottomX1, bottomY1));
+        } else {
+            // We must have set bottomX2 to be rightX1
+            IPlanarGadget barrier = barrierFactory.createBarrier(
+                barrierFactory.minWidth(), bottomY1 - rightBarrierMinY);
+            layout.put(barrier, new Point(rightX1, rightBarrierMinY));
+            barrier = barrierFactory.createBarrier(vertex.maxX - bottomX1, boundsBottomY - bottomY1);
+            layout.put(barrier, new Point(bottomX1, bottomY1));
+        }
 
         // Now that we know the final value of topY2, we can go back and add the barrier to the right of the non-turn
         // wire we first added to wind around the left to connect a port to the top.  Likewise for the bottom.
         if (rightXForTopX1 != Integer.MIN_VALUE) {
-            barrier = barrierFactory.createBarrier(rightXForTopX1 - topX1, bottomYForTopX1 - topY2);
+            IPlanarGadget barrier = barrierFactory.createBarrier(rightXForTopX1 - topX1, bottomYForTopX1 - topY2);
             layout.put(barrier, new Point(topX1, topY2));
         }
         if (leftXForBottomX2 != Integer.MAX_VALUE) {
-            barrier = barrierFactory.createBarrier(bottomX2 - leftXForBottomX2, bottomY1 - topYForBottomX2);
+            IPlanarGadget barrier = barrierFactory.createBarrier(
+                bottomX2 - leftXForBottomX2, bottomY1 - topYForBottomX2);
             layout.put(barrier, new Point(leftXForBottomX2, topYForBottomX2));
         }
     }
