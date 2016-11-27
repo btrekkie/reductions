@@ -84,7 +84,7 @@ public class MarioCrossoverGadget extends MarioGadget {
 
     @Override
     public List<Point> ports() {
-        List<Point> ports = Arrays.asList(new Point(0, 19), new Point(0, 9), new Point(27, 19), new Point(0, 29));
+        List<Point> ports = Arrays.asList(new Point(0, 19), new Point(0, 9), new Point(27, 18), new Point(0, 29));
         if (!isFlipped) {
             return ports;
         } else {
