@@ -15,7 +15,7 @@ class HalfEdge {
     public RootVertex endRootVertex;
 
     /**
-     * Whether this is a "synthetic" half edge not corresponding to an edge the original graph for which we are
+     * Whether this is a "synthetic" half edge not corresponding to an edge in the original graph for which we are
      * computing a planar graph.  This includes short circuit edges and special edges created in
      * PlanarEmbedding.mergeBiconnectedComponent.
      */

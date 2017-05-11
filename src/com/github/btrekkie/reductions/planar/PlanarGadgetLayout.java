@@ -19,8 +19,8 @@ import com.github.btrekkie.graph.visibility.VisibilityVertex;
  */
 /* PlanarGadgetLayout is implemented by treating each gadget as a rectangle and connecting these rectangles with
  * vertical wires.  SinglePlanarGadgetLayout is a black box that takes the rectangular region that PlanarGadgetLayout
- * assigns to a gadget and adding wires and barriers that route its ports to the appropriate points on the top and
- * bottom edges of the region.  To compute the positions of the rectangles and vertical wires, we compute a
+ * assigns to a gadget and adds wires and barriers that route its ports to the appropriate points on the top and bottom
+ * edges of the region.  To compute the positions of the rectangles and vertical wires, we compute a
  * VisibilityRepresentation.  Given the appropriate spacing parameters, especially the minVertexWidths and
  * minVertexVerticalSpace arguments to VisibilityRepresentation.compute, we can position a gadget's rectangle so that
  * the top edge is where the corresponding VisibilityVertex is located.

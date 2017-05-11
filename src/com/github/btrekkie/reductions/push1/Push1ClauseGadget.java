@@ -47,7 +47,7 @@ public class Push1ClauseGadget extends Push1Gadget {
             "********* **** *",
             "********  **** *",
             "   ***** ***** *",
-            "**    ** ***** *",
+            "**   *** ***** *",
             "**oo   oo   ** *",
             "** oo oo **    *",
             "*** ooo ********",
