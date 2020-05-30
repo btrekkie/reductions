@@ -77,8 +77,8 @@ demonstrations of the Zelda, Pok&eacute;mon, or Push-1 / PushPush reductions,
 change `mario.MarioProblem` in the last command to `zelda.ZeldaProblem`,
 `pokemon.PokemonProblem`, or `push1.Push1Problem` respectively.
 
-Pok&eacute;mon problems feature strong trainers, which always defeat the player,
-and weak trainers, which never defeat the player.  The sight lines of the strong
+Pok&eacute;mon problems feature strong trainers, who always defeat the player,
+and weak trainers, who never defeat the player.  The sight lines of the strong
 trainers are show in blue, and the sight lines of the weak trainers are shown in
 red.
 
@@ -88,6 +88,9 @@ Hard](https://arxiv.org/pdf/1203.1895.pdf) and [Demaine, Demaine, and O'Rourke
 (2000): PushPush and Push-1 are NP-hard in
 2D](https://arxiv.org/pdf/cs/0007021v2.pdf).  See those papers for a more
 detailed description of what is going on in the stages this program produces.
+
+# Documentation
+See <https://btrekkie.github.io/reductions/index.html> for API documentation.
 
 # Credits
 * Super Mario Bros., The Legend of Zelda, and Pok&eacute;mon are &copy;
